@@ -1,0 +1,4 @@
+python-docx
+customtkinter
+tqdm
+docx2pdf
