@@ -1,57 +1,36 @@
 # LegalFlow_Pro
 A contract automation desktop app with dashboard UI, built under Synergy Spheres 3.0.
-import customtkinter as ctk
-from tkinter import filedialog
-from docx import Document
+# ⚖️ LegalFlow Pro – Contract Automation Software
 
-def create_contract_from_form():
-    form_window = ctk.CTkToplevel()
-    form_window.title("🧾 Create New Contract")
-    form_window.geometry("500x500")
+**LegalFlow Pro** is a lightweight, offline desktop application for automating contract workflows — built under the Synergy Spheres 3.0 initiative. It allows users to:
 
-    # Field labels and entry boxes
-    fields = {
-        "Client Name": None,
-        "Service Provider": None,
-        "Service Description": None,
-        "Start Date": None,
-        "End Date": None,
-        "Payment Amount": None
-    }
+- 📝 Fill contract templates with dynamic data
+- 🧾 Generate new contracts from form input
+- 📤 Export filled contracts to PDF
+- 🗂️ Organize and manage reusable legal templates
 
-    entries = {}
+No cloud dependency. No sign-up. Just install, run, and automate.
 
-    for i, (label, _) in enumerate(fields.items()):
-        lbl = ctk.CTkLabel(form_window, text=label)
-        lbl.pack(pady=(10 if i == 0 else 5, 0))
-        entry = ctk.CTkEntry(form_window, width=400)
-        entry.pack()
-        entries[label] = entry
 
-    def submit():
-        # Get values
-        values = {label: entry.get() for label, entry in entries.items()}
+## 🚀 Features
 
-        # Generate DOCX document
-        doc = Document()
-        doc.add_heading("Service Agreement", level=1)
-        doc.add_paragraph(f"This Service Agreement is made between {values['Client Name']} and {values['Service Provider']}.")
-        doc.add_paragraph(f"The service to be provided is: {values['Service Description']}.")
-        doc.add_paragraph(f"Start Date: {values['Start Date']} | End Date: {values['End Date']}")
-        doc.add_paragraph(f"Payment Terms: {values['Payment Amount']}")
+- 🔍 **Browse Templates** – Load `.docx` contract files
+- 🧠 **Auto-fill** – Smart replace placeholders like `{{ClientName}}`
+- 🧾 **Form-Based Contract Creation** – Input parties, dates, amounts etc.
+- 📄 **PDF Export** – Generate final printable contracts
+- 🎨 Modern UI with `customtkinter`
+- ✅ Fully Offline, Works on Windows
 
-        # Save path
-        save_path = filedialog.asksaveasfilename(
-            defaultextension=".docx",
-            filetypes=[("Word Documents", "*.docx")],
-            title="Save Generated Contract"
-        )
 
-        if save_path:
-            doc.save(save_path)
-            form_window.destroy()
-            ctk.CTkMessagebox(title="Saved", message="✅ New contract created successfully!")
+## 🛠️ Installation
 
-    # Submit button
-    submit_btn = ctk.CTkButton(form_window, text="Generate Contract", command=submit)
-    submit_btn.pack(pady=20)
+### 🔹 Prerequisites
+
+- Python 3.10–3.12 recommended
+- Works on Windows/macOS/Linux
+
+### 🔹 Install Dependencies
+
+```bash
+pip install -r requirements.txt
+
