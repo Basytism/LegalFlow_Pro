@@ -1,0 +1,30 @@
+import os
+import zipfile
+
+base_dir = "LegalFlow_Pro"
+structure = {
+    "assets": [],
+    "ui": ["dashboard.py", "sidebar.py"],
+    "logic": ["fill_contract.py", "export_pdf.py", "generate_template.py"],
+    "templates": [],
+    "contracts": [],
+    "exports": [],
+    "": ["main.py", "requirements.txt"]
+}
+
+# Create folders and files
+for folder, files in structure.items():
+    folder_path = os.path.join(base_dir, folder)
+    os.makedirs(folder_path, exist_ok=True)
+    for file in files:
+        with open(os.path.join(folder_path, file), "w") as f:
+            f.write("")
+
+# Create ZIP
+with zipfile.ZipFile(f"{base_dir}.zip", "w") as zipf:
+    for root, _, files in os.walk(base_dir):
+        for file in files:
+            filepath = os.path.join(root, file)
+            zipf.write(filepath, arcname=os.path.relpath(filepath, base_dir))
+
+print("✅ LegalFlow_Pro.zip created successfully.")
